@@ -1,4 +1,4 @@
-version: "1.3.4" # 不要修改
+version: "1.4.1" # 不要修改
 Debug: false
 
 # 是否开启南瓜头
@@ -23,6 +23,71 @@ creature-spawn-limits:
 camera-block-check:
   enabled: true
   radius: 1  # 以玩家为中心的检测半径（方块）
+
+# 按钮访问控制配置
+button-access-control:
+  # 需要登录才能点击的按钮标识配置
+  login-required:
+    # 在按钮名称中包含的标识文本
+    name-tags:
+      - "[需要登录]"
+      - "%img_logo%"
+    # 在按钮键名中包含的标识文本
+    key-tags:
+      - "login_required"
+      - "%img_logo%"
+  # 防止重复注册的按钮标识配置
+  no-duplicate-registration:
+    # 在按钮名称中包含的标识文本
+    name-tags:
+      - "%img_logo%"
+      - "[NO_DUPLICATE_REG]"
+    # 在按钮键名中包含的标识文本
+    key-tags:
+      - "no_duplicate_reg"
+      - "防止重复注册"
+
+# IP绑定安全配置
+ip-binding:
+  # 是否启用IP绑定（同一IP只能注册一个账号）
+  enabled: true
+  # 是否严格模式：IP不匹配时直接拒绝登录
+  # false -> IP不匹配时发出警告但仍允许登录
+  # true -> IP不匹配时直接拒绝登录
+  strict: false
+  # 是否允许同一IP的用户登录已注册的账号
+  allow-same-ip-login: true
+  # 锁定时间（分钟）：密码错误多次后锁定
+  lockout-duration: 5
+  # 最大登录尝试次数
+  max-login-attempts: 5
+
+  # IP白名单配置
+  whitelist:
+    # 是否启用IP白名单
+    enabled: false
+    # 白名单IP列表（支持CIDR格式，如 192.168.1.0/24）
+    ips: []
+      # - "192.168.1.1"
+      # - "10.0.0.0/8"
+
+  # IP黑名单配置
+  blacklist:
+    # 是否启用IP黑名单
+    enabled: false
+    # 黑名单IP列表（支持CIDR格式，如 192.168.1.0/24）
+    ips: []
+      # - "192.168.1.100"
+      # - "10.0.0.50"
+
+  # 管理员IP白名单配置（仅对OP玩家生效）
+  admin-ip-whitelist:
+    # 是否启用管理员IP白名单
+    enabled: false
+    # 允许登录的IP列表（支持CIDR格式，如 192.168.1.0/24）
+    ips: []
+      # - "192.168.1.1"
+      # - "10.0.0.0/8"
 
 messages:
   prefix: '&f[&eCustomScreenMenu&f] '
